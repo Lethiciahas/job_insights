@@ -1,5 +1,4 @@
 import csv
-from tokenize import Number
 from src.jobs import read
 
 
@@ -98,21 +97,13 @@ def get_max_salary(path):
 
 
 def get_min_salary(path):
-    """Get the minimum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
-    pass
+    path_data = read(path)
+    list_min_salary = []
+    for salary in path_data:
+        min_salary = salary["min_salary"]
+        if min_salary.isnumeric():
+            list_min_salary.append(int(min_salary))
+    return min(list_min_salary)
 
 
 def matches_salary_range(job, salary):

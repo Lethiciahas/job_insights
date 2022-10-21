@@ -1,4 +1,5 @@
 import csv
+from tokenize import Number
 from src.jobs import read
 
 
@@ -87,21 +88,13 @@ def filter_by_industry(jobs, industry):
 
 
 def get_max_salary(path):
-    """Get the maximum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    pass
+    path_data = read(path)
+    list_max_salary = []
+    for salary in path_data:
+        max_salary = salary["max_salary"]
+        if max_salary.isnumeric():
+            list_max_salary.append(int(max_salary))
+    return max(list_max_salary)
 
 
 def get_min_salary(path):

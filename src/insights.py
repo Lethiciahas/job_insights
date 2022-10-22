@@ -9,39 +9,16 @@ def get_unique_job_types(path):
         for row in csvreader:
             job_types = row["job_type"]
             list_jobs_types.add(job_types)
-            """Checks all different job types and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
         return list_jobs_types
 
 
 def filter_by_job_type(jobs, job_type):
-    """Filters a list of jobs by job_type
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    return []
+    filter_job = []
+    for job in jobs:
+        job_filter = job["job_type"]
+        if job_filter == job_type:
+            filter_job.append(job)
+    return filter_job
 
 
 def get_unique_industries(path):
@@ -51,20 +28,6 @@ def get_unique_industries(path):
         unique_industry = data["industry"]
         if len(unique_industry):
             list_unique.add(unique_industry)
-    """Checks all different industries and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
     return list_unique
 
 
